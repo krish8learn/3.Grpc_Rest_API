@@ -1,0 +1,27 @@
+syntax = "proto3";
+package proto;
+option go_package = "proto";
+message Employee{
+ string Employee_id = 1;
+ string Employee_name = 2;
+ string Employee_mail = 3;
+ string Employee_mobile = 4;
+}
+message EmpUnaryRequest{
+ string unaryinput = 1;
+}
+message EmpUnaryResponse{
+ Employee unaryoutput = 1;
+}
+message EmpStreamRequest{
+ string streaminput = 1;
+}
+message EmpStreamResponse{
+ Employee streamoutput = 1;
+}
+service EmpService{
+ //unary
+ rpc SearchData(EmpUnaryRequest) returns (EmpUnaryResponse) {}
+ //server streaming
+ rpc ShowAllData(EmpStreamRequest) returns (stream EmpStreamResponse) {}
+}
